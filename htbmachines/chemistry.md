@@ -94,4 +94,10 @@ Since all we are looking for is root.txt we add that into the command `curl -s -
 If we `curl -s localhost:8080` and take a look at the code; we find that there is a directory/path called **assets**. Add it into the curl command and root.txt will display right under.
 
 
-Simple solid CTF to start again after a long break; with great power comes great responsibility, stay ethical. 
+Simple solid CTF to start again after a long break; with great power comes great responsibility, stay ethical.
+
+The target machine (10.10.11.38) has two open ports: SSH (22) and HTTP (5000). The web page allows users to upload CIF files. Exploiting this, a malicious Python code was injected into a CIF file to create a reverse shell. After uploading the file, a netcat listener on port 7777 established a connection, allowing access to the machine.
+
+In the "instance" directory, an SQLite database was found, revealing user data with MD5 hashed passwords. After cracking the password for "rosa," SSH was accessed, and further exploration led to the discovery of a Python application running on port 8080. A known exploit in the aiohttp version (3.9.1) was used to retrieve the root.txt flag.
+
+
