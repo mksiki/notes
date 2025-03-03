@@ -132,3 +132,9 @@ This directory is writable and accessible, making it a suitable location to uplo
 
 3-5 seconds I `ls` and saw `root.txt`.
 PWNED!
+
+The target machine, Titanic (Linux), was explored through a series of steps. After running `nmap`, the website was accessible after adding the target IP to `/etc/hosts`. The site had a "Book Your Trip" button that triggered a download of a JSON file. Subdomain fuzzing revealed a Gitea instance running on version 1.22.1, but no vulnerabilities were found. The app's source code revealed a vulnerability in the `/download` route, where path traversal could access sensitive files. Using `curl`, the user flag was obtained.
+
+Further exploration led to downloading the Gitea database (`gitea.db`) using path traversal and extracting password hashes with SQLite3. The hashes were cracked using Hashcat, and SSH access was gained.
+
+Privilege escalation was achieved by exploiting a writable directory (`/opt/app/static/assets/images/`) and uploading a malicious shared library that copied the root flag to the current directory. The root flag was successfully obtained, completing the exploit.
