@@ -93,10 +93,10 @@ Why not try and do the same with curl again.. Since we know the file we are look
 Since I have been using curl thus far I thought to continue on using it. 
 `curl -o gitea.db "http://titanic.htb/downloadticket=../../../../home/developer/gitea/data/gitea/gitea.db"`
 Using the `-o` flag tells `curl` to save the downloaded content to a file (**gitea.db**). 
-And I am still using path traversal. 
+And I am still using [path traversal](https://github.com/mksiki/notes/blob/main/path_traversal.md). 
 
 ## SQLite3 
-Analyzed and used to extract password hashes. 
+[Analyzed and used to extract password hashes](https://github.com/mksiki/notes/blob/main/sqlite3_ex.md). 
 ```
 
 sqlite3 gitea.db "select passwd,salt,name from user" | while read data; do digest=$(echo "$data" | cut -d'|' -f1 | xxd -r -p | base64); salt=$(echo "$data" | cut -d'|' -f2 | xxd -r -p | base64); name=$(echo $data | cut -d'|' -f 3); echo "${name}:sha256:50000:${salt}:${digest}"; done | tee gitea.hashes
@@ -108,7 +108,7 @@ sqlite3 gitea.db "select passwd,salt,name from user" | while read data; do diges
 After finding the password I used ssh to get into the machine. See theuser flag that I already got but also files that we also already saw before.
 
 ## SSH (privilege escalation)
-Located `/opt/` directory which we used to explore. 
+Located `/opt/` [directory](https://github.com/mksiki/notes/blob/main/opt.md) which we used to explore. 
 `/scripts/` then used `cat` to explore the contents of the file that was inside.
 
 Checked for `magick -version` that was used to exploit; simple Google search. 
@@ -128,8 +128,7 @@ EOF
 
 ```
 Ran this code in the `/opt/app/static/assets/images/`
-this directory is writable and accessible, making it a suitable location to upload or execute arbitrary code.
+This directory is writable and accessible, making it a suitable location to upload or execute arbitrary code. [Example](https://github.com/mksiki/notes/blob/main/opt.md)
 
-After 3-5 seconds I `ls` and saw `root.txt`.
-
+3-5 seconds I `ls` and saw `root.txt`.
 PWNED!
