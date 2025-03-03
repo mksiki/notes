@@ -1,4 +1,4 @@
-### What is `/opt/scripts`?
+## What is `/opt/scripts`?
 
 In Linux/Unix-based systems, **`/opt`** is a standard directory that is often used to store optional software packages or third-party applications that are not part of the core system. These applications can be installed in their own subdirectories under `/opt`, and this allows for easier management of non-system packages.
 
@@ -70,7 +70,7 @@ When you're connected to a system via **SSH** and you're looking for potentially
 - **For system administration**: Look in `/etc/`, `/home/`, and `/var/` for important system configurations and user data.
 - **For security assessments**: In addition to the typical directories, look for hidden scripts, logs, or executables that might indicate compromise or misconfiguration.
 
-### Why Execute the Code in `/opt/app/static/assets/images/`?
+## Why Execute the Code in `/opt/app/static/assets/images/`?
 
 The reason for executing the **GCC** command in `/opt/app/static/assets/images/` is likely because this directory is **writable** and **accessible**, making it a suitable location to upload or execute arbitrary code. Here’s why:
 
