@@ -138,7 +138,7 @@ if /usr/bin/sudo /usr/bin/test -L $LINK;then
   fi
 fi
 ```
-This script, clean_symlink.sh, is a security tool that performs operations on symbolic links (symlinks) in a Linux system, specifically those involving .png files.
+This script, clean_symlink.sh, is a security tool that performs operations on [symbolic links (symlinks)](https://github.com/mksiki/notes/blob/main/symlink.md) in a Linux system, specifically those involving .png files.
 
 In this scenario, the script successfully moved the symlink huh.png (which pointed to /root/root.txt) to quarantine because it detected the target as being from the /root directory, which is sensitive.
 
