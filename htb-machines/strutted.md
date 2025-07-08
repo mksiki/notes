@@ -87,9 +87,9 @@
 
 * Closed multipart form data.
 
-![alt text](https://ibb.co/gZxXbskG)
+https://ibb.co/gZxXbskG
 
-![alt text](https://ibb.co/TqvDYXzk)
+https://ibb.co/TqvDYXzk
 
 * Server response showed upload succeeded, displaying path:
 
@@ -97,7 +97,7 @@
   uploads/20250708_023045/../../cmd.jsp
   ```
 
-![alt text](https://ibb.co/S4vcjF6N)
+https://ibb.co/S4vcjF6N
 
 
 * Confirmed the webshell was accessible and operational:
