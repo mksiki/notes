@@ -87,11 +87,18 @@
 
 * Closed multipart form data.
 
+https://ibb.co/gZxXbskG
+
+https://ibb.co/TqvDYXzk
+
 * Server response showed upload succeeded, displaying path:
 
   ```
   uploads/20250708_023045/../../cmd.jsp
   ```
+
+https://ibb.co/S4vcjF6N
+
 
 * Confirmed the webshell was accessible and operational:
 
